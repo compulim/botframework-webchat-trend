@@ -63,10 +63,10 @@ async function fetchStatsHistory() {
 
   const { content, sha } = await res.json();
 
-  return { history: JSON.parse(Buffer.from(content, 'base64').toString()), sha };
+  return { history: JSON.parse(Buffer.from(content, 'base64').toString()), blobSHA: sha };
 }
 
-async function putStatsHistory(history, sha) {
+async function putStatsHistory(history, blobSHA) {
   const res = await fetch(
     `https://api.github.com/repos/${ encodeURI(DATA_OWNER) }/${ encodeURI(DATA_REPO) }/contents/stats.json`,
     {
@@ -74,7 +74,7 @@ async function putStatsHistory(history, sha) {
         branch: DATA_BRANCH,
         content: Buffer.from(JSON.stringify(history, null, 2)).toString('base64'),
         message: 'Add data point',
-        sha
+        sha: blobSHA
       }),
       headers: {
         accept: 'application/vnd.github.v3+json',
@@ -89,9 +89,9 @@ async function putStatsHistory(history, sha) {
     throw new Error(`Failed to update stats.json, server returned ${ res.status } (${ res.statusText })`);
   }
 
-  const { commit: { sha } } = await res.json();
+  const { commit: { sha: commitSHA } } = await res.json();
 
-  return sha;
+  return commitSHA;
 }
 
 async function main() {
@@ -99,13 +99,13 @@ async function main() {
 
   console.log(current);
 
-  const { history, sha } = await fetchStatsHistory();
+  const { history, blobSHA } = await fetchStatsHistory();
   const nextHistory = updateIn(history, ['series'], series => [{
     now: new Date().toISOString(),
     ...current
   }, ...series || []]);
 
-  const commitSHA = await putStatsHistory(nextHistory, sha);
+  const commitSHA = await putStatsHistory(nextHistory, blobSHA);
 
   console.log(`History updated, commit is ${ commitSHA }.`);
 }
