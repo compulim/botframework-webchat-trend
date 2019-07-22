@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "build": "babel --out-dir lib --source-maps true src/",
-    "start": "concurrently --names \"build,run\" \"npm run build -- --watch\" \"node-dev --no-notify --respawn .\""
+    "start": "concurrently --kill-others --names \"build,run\" \"npm run build -- --watch\" \"node-dev --no-notify --respawn .\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/compulim/botframework-webchat-trend#readme",
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "dotenv": "^8.0.0",
+    "node-fetch": "^2.6.0",
+    "simple-update-in": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
