@@ -1,0 +1,31 @@
+{
+  "name": "botframework-webchat-trend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "babel --out-dir lib --source-maps true src/",
+    "start": "concurrently --names \"build,run\" \"npm run build -- --watch\" \"node-dev --no-notify --respawn .\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/botframework-webchat-trend.git"
+  },
+  "author": "William Wong <compulim@hotmail.com> (http://compulim.info/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/botframework-webchat-trend/issues"
+  },
+  "homepage": "https://github.com/compulim/botframework-webchat-trend#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "concurrently": "^4.1.1",
+    "node-dev": "^4.0.0"
+  }
+}
