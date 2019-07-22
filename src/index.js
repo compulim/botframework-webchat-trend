@@ -89,9 +89,9 @@ async function putStatsHistory(history, sha) {
     throw new Error(`Failed to update stats.json, server returned ${ res.status } (${ res.statusText })`);
   }
 
-  const { commit } = await res.json();
+  const { commit: { sha } } = await res.json();
 
-  return commit;
+  return sha;
 }
 
 async function main() {
@@ -105,9 +105,9 @@ async function main() {
     ...current
   }, ...series || []]);
 
-  const commit = await putStatsHistory(nextHistory, sha);
+  const commitSHA = await putStatsHistory(nextHistory, sha);
 
-  console.log(`History updated, commit is ${ commit }.`);
+  console.log(`History updated, commit is ${ commitSHA }.`);
 }
 
 main().catch(err => console.error(err));
