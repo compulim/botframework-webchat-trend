@@ -1,1 +1,13 @@
-{}
+{
+  "series": [
+    {
+      "now": "2019-07-23T07:42:00.986Z",
+      "forks_count": 799,
+      "open_issues_count": 136,
+      "size": 67310,
+      "stargazers_count": 890,
+      "subscribers_count": 128,
+      "watchers_count": 890
+    }
+  ]
+}
