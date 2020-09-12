@@ -19,7 +19,7 @@
   "homepage": "https://github.com/compulim/botframework-webchat-trend#readme",
   "dependencies": {
     "dotenv": "^8.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "simple-update-in": "^2.1.0"
   },
   "devDependencies": {
