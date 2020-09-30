@@ -1,6 +1,15 @@
 {
   "series": [
     {
+      "now": "2020-09-30T15:17:18.329Z",
+      "forks_count": 1147,
+      "open_issues_count": 236,
+      "size": 108398,
+      "stargazers_count": 1142,
+      "subscribers_count": 131,
+      "watchers_count": 1142
+    },
+    {
       "now": "2020-09-29T15:14:36.457Z",
       "forks_count": 1146,
       "open_issues_count": 234,
